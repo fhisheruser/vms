@@ -16,10 +16,22 @@ main {
   background-color: #eeeeee;
 }
 
+h2{
+  border-bottom: 2px solid #7d1c87;
+  width: fit-content;
+}
+
 .form-container {
   flex: 1;
 }
 
+.today-date{
+  background-color: #7d1c87db;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+}
 
 .basic-details {
   display: flex;
