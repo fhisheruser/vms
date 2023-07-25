@@ -1,74 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vendor Management System</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
-
-main {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-}
-
-.form-container {
-  flex: 1;
-  max-width: 400px;
-}
-
-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 16px;
-}
-
-button {
-  background-color: #333;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-}
-
-.vendor-list {
-  flex: 1;
-  max-width: 600px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
     <h1>Vendor Management System</h1>
@@ -76,55 +16,82 @@ li {
 
   <main>
     <div class="form-container">
-      <h2>Add Vendor</h2>
+      <h2>Vendor Details</h2>
       <form id="vendorForm">
-        <input type="text" name="name" placeholder="Vendor Name" required>
-        <input type="text" name="shopName" placeholder="Vendor Shop Name">
-        <input type="text" name="address" placeholder="Vendor Address" required>
-        <input type="tel" name="phone" placeholder="Vendor Phone Number" required>
-        <input type="email" name="email" placeholder="Vendor Email ID" required>
-        <select name="type" required>
-          <option value="" disabled selected>Vendor Type</option>
-          <option value="Services">Services</option>
-          <option value="Goods">Goods</option>
-        </select>
-        <input type="number" name="Account" placeholder="Vendor Bank Account Number" required>
-        <input type="text" name="bankname" placeholder="Vendor Bank Name" required>
-        <input type="text" name="pannum" placeholder="Vendor Pancard Number" required>
-        <input type="text" name="Accountname" placeholder="Vendor Account Name" required>
-        <label for="vendorUPI">Vendor UPI Number:</label>
-  <select id="vendorUPI" onchange="showUPIInput()">
-    <option value="">Select...</option>
-    <option value="gpay">GPay</option>
-    <option value="phonepay">PhonePe</option>
-    <option value="bharatpay">Bharat Pay</option>
-    <option value="paytm">Paytm</option>
-  </select>
+        <div class="basic-details">
+          <input type="text" name="name" placeholder="Vendor Name" required>
+          <input type="text" name="shopName" placeholder="Vendor Shop Name">
+          <input type="text" name="address" placeholder="Vendor Address" required>
+          <input type="tel" name="phone" placeholder="Vendor Phone Number" required>
+          <input type="email" name="email" placeholder="Vendor Email ID" required>
+          <select name="type" required>
+            <option value="" disabled selected>Vendor Type</option>
+            <option value="Services">Services</option>
+            <option value="Goods">Goods</option>
+          </select>
+        </div>
 
-  <br>
+        <div class="account-details">
+          <h2>Account Details</h2>
+          <div >
+            <div class="account-input">
+              <input type="number" name="Account" placeholder="Vendor Bank Account Number" required>
+              <input type="text" name="bankname" placeholder="Vendor Bank Name" required>
+              <input type="text" name="pannum" placeholder="Vendor Pancard Number" required>
+              <input type="text" name="Accountname" placeholder="Vendor Account Name" required>
+            </div>
 
-  <div id="upiInputContainer">
-    <label for="upiInput">Enter UPI ID:</label>
-    <input type="text" id="upiInput" name="upiInput" disabled>
-  </div>
-        <input type="text" name="GST" placeholder="Vendor GST" required>
-        <input type="date" name="joindate" placeholder="Vendor DOI" required>
-        <label for="dateOfExit">Vendor Date of Exit:</label>
-        <input type="date" id="dateOfExit" name="dateOfExit" max="9999-12-31" required>
-        <button onclick="setExactDate()">Set Exact Date</button>
-      
-        <!-- Add more input fields for other vendor details as needed -->
-       
+            <div class="upi">
+              <div style="width: 24.5%">
+                <label for="vendorUPI">Vendor UPI Number</label>
+                <br>
+                <select id="vendorUPI" onchange="showUPIInput()">
+                  <option value="">Select...</option>
+                  <option value="gpay">GPay</option>
+                  <option value="phonepay">PhonePe</option>
+                  <option value="bharatpay">Bharat Pay</option>
+                  <option value="paytm">Paytm</option>
+                </select>
+              </div>
+              <br>
+              <div id="upiInputContainer">
+                <input type="text" id="upiInput" name="upiInput" placeholder="UPI Phone Number" style="
+                width: 29%;"
+             disabled>
+                <input type="text" name="GST" placeholder="Vendor GST" required>
+              </div>
+            </div>
 
-        <input type="text" name="roe" placeholder="Vendor Reason for Exit" required>
-        <input type="text" name="ref" placeholder="Vendor Reference" required>
-        <input type="text" name="remark" placeholder="Remark" required>
-        <button type="submit">Add Vendor</button>
+          </div>
+        </div>
+        <div>
+          <div style="display: flex;align-items: flex-end;">
+            <div style="width: 24.5%;">
+              <label for="dateOfExit">Vendor Date of Inclusion:</label><br>
+              <input type="date" name="joindate" placeholder="Vendor DOI" required>
+            </div>
+            <div>
+
+              <label for="dateOfExit">Vendor Date of Exit:</label><br>
+              <input type="date" id="dateOfExit" name="dateOfExit" max="9999-12-31" required>
+            </div>
+            <button onclick="setExactDate()">Set Exact Date</button>
+          </div>
+          <div class="extra-info">
+            <input type="text" name="roe" placeholder="Vendor Reason for Exit" required>
+            <input type="text" name="ref" placeholder="Vendor Reference" required>
+            <input type="text" name="remark" placeholder="Remark" required>
+          </div>
+        </div>
+        <div class="sub-button">
+
+          <button type="submit">Add Vendor</button>
+        </div>
       </form>
       <div style="width: 400px; height: 400px;">
         <canvas id="pieChart"></canvas>
       </div>
-     
+
     </div>
 
     <div class="vendor-list">
@@ -135,110 +102,7 @@ li {
     </div>
   </main>
 
-  <script>
-    const vendorForm = document.getElementById('vendorForm');
-const vendorList = document.getElementById('vendorList');
-
-vendorForm.addEventListener('submit', addVendor);
-
-function addVendor(event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const vendor = {};
-  formData.forEach((value, key) => (vendor[key] = value));
-  displayVendor(vendor);
-  event.target.reset();
-}
-
-function displayVendor(vendor) {
-  const listItem = document.createElement('li');
-  listItem.innerHTML = `
-    <strong>${vendor.name}</strong><br>
-    <strong>Shop Name:</strong> ${vendor.shopName || 'N/A'}<br>
-    <strong>Address:</strong> ${vendor.address}<br>
-    <strong>Phone:</strong> ${vendor.phone}<br>
-    <strong>Email:</strong> ${vendor.email}<br>
-    <strong>Type:</strong> ${vendor.type}<br>
-  `;
-  vendorList.appendChild(listItem);
-}
-function showUPIInput() {
-      const vendorUPI = document.getElementById("vendorUPI");
-      const upiInputContainer = document.getElementById("upiInputContainer");
-      const upiInput = document.getElementById("upiInput");
-
-      const selectedOption = vendorUPI.value;
-      upiInput.value = ""; // Clear the input field on change
-
-      if (selectedOption) {
-        upiInputContainer.style.display = "block";
-        upiInput.disabled = false;
-        upiInput.placeholder = `Enter ${selectedOption} UPI ID`;
-      } else {
-        upiInputContainer.style.display = "none";
-        upiInput.disabled = true;
-      }
-    }
-
-    function setExactDate() {
-      const dateOfExitInput = document.getElementById("dateOfExit");
-      const currentDate = new Date();
-      const formattedDate = currentDate.toISOString().slice(0, 10);
-      dateOfExitInput.value = formattedDate;
-    }
-
-
-
-
-
-
-
-
-    document.getElementById("vendorForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const vendorData = {
-      name: formData.get("vendorName"),
-      type: formData.get("vendorType"),
-      dateOfExit: formData.get("dateOfExit")
-    };
-
-    // Call a function to update the pie chart with the vendorData
-    updatePieChart(vendorData);
-  });
-
-  function updatePieChart(vendorData) {
-    const pieChartCanvas = document.getElementById("pieChart");
-    const pieChartData = {
-      labels: ["Services", "Goods"],
-      datasets: [{
-        data: [0, 0], // Initial values, will be updated based on the form input
-        backgroundColor: ["#FF6384", "#36A2EB"],
-      }],
-    };
-
-    // Update the dataset with the form input
-    if (vendorData.type === "Services") {
-      pieChartData.datasets[0].data[0]++;
-    } else if (vendorData.type === "Goods") {
-      pieChartData.datasets[0].data[1]++;
-    }
-
-    // Create or update the pie chart
-    if (window.pieChart) {
-      window.pieChart.data = pieChartData;
-      window.pieChart.update();
-    } else {
-      window.pieChart = new Chart(pieChartCanvas, {
-        type: "pie",
-        data: pieChartData,
-        options: {
-          responsive: true,
-        },
-      });
-    }
-  }
-  </script>
+  <script src="script.js"></script>
 </body>
-</html>
 
+</html>

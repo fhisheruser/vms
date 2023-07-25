@@ -1,0 +1,124 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #7d1c87;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  padding: 4rem 12rem;
+  background-color: #eeeeee;
+}
+
+.form-container {
+  flex: 1;
+}
+
+
+.basic-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+
+.basic-details>* {
+  flex: 0 0 30%;
+}
+
+.account-details {
+  margin: 3rem 0rem;
+}
+
+.account-input {
+  display: flex;
+  gap: 21px;
+  width: 97%;
+}
+
+.account-input>* {
+  width: 22.5%;
+}
+
+
+.upi {
+  display: flex;
+  margin: 1rem 0rem;
+  align-items: flex-end;
+}
+
+#vendorUPI{
+  margin-top: 0.4rem;
+  width: 94%;
+}
+
+#upiInputContainer{
+  display: flex;
+  gap: 21px;
+  /* width: 57%; */
+  flex: 1;
+  justify-content: flex-start;
+}
+
+select {
+  padding: 0;
+  height: 2.3rem;
+
+}
+
+.extra-info {
+  margin: 1rem 0rem;
+  display: flex;
+  gap: 21px
+}
+
+
+.extra-info>* {
+  flex: 0 0 30%;
+}
+
+input {
+  /* width: 100%; */
+  margin-top: 0.6rem;
+  padding: 0.5rem;
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+.sub-button{
+  display: flex;
+  justify-content: center;
+}
+
+.sub-button button {
+  margin: 2rem;
+  background-color: #7d1c87;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  font-size: large;
+  cursor: pointer;
+}
+
+.vendor-list {
+  flex: 1;
+  max-width: 600px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
