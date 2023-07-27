@@ -16,81 +16,120 @@
 
   <main>
     <div class="form-container">
-      <h2>Vendor Details</h2>
+      <h2>Vendor Details:</h2>
       <form id="vendorForm">
         <div class="basic-details">
           <input type="text" name="name" placeholder="Vendor Name" required>
           <input type="text" name="shopName" placeholder="Vendor Shop Name">
-          <input type="text" name="address" placeholder="Vendor Address" required>
           <input type="tel" name="phone" placeholder="Vendor Phone Number" required>
+          <input type="tel" name="altphone" placeholder="Vendor Alternate Phone Number" required>
           <input type="email" name="email" placeholder="Vendor Email ID" required>
+          <input type="text" name="address" placeholder="Vendor Address" required>
+          <!-- <textarea rows="10" cols="50" name="remark" placeholder="Remark" class="remark"> </textarea> -->
+          <input type="text" name="repName" placeholder="Vendor Representative Name">
+          <input type="tel" name="repPhone" placeholder="Representative Phone Number" required>
+          <input type="email" name="repEmail" placeholder="Representative Email ID" required>
           <select name="type" required>
-            <option value="" disabled selected>Vendor Type</option>
-            <option value="Services">Services</option>
-            <option value="Goods">Goods</option>
+            <option value="" selected hidden>Vendor Type</option>
+            <option value="Food">Food</option>
+            <option value="Flower">Flower</option>
+            <option value="Vegeatbles">Vegeatbles</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Painter">Painter</option>
+            <option value="TaxiDriver">Taxi Driver</option>
+            <option value="CameraPerson">Photography & Videography</option>
+            <option value="Medicine">Medicine Provider</option>
           </select>
+          <select name="branchLocation" required>
+            <option value="" selected hidden>Branch Location</option>
+            <option value="Chandigarh">Chandigarh</option>
+          </select>
+          <input type="file" name="vendor-image" accept="image/*">
         </div>
 
         <div class="account-details">
-          <h2>Account Details</h2>
-          <div >
+          <h2>Account Details:</h2>
+          
             <div class="account-input">
               <input type="number" name="Account" placeholder="Vendor Bank Account Number" required>
               <input type="text" name="bankname" placeholder="Vendor Bank Name" required>
-              <input type="text" name="pannum" placeholder="Vendor Pancard Number" required>
+              
               <input type="text" name="Accountname" placeholder="Vendor Account Name" required>
-            </div>
-
-            <div class="upi">
-              <div style="width: 24.5%">
-                <label for="vendorUPI">Vendor UPI Number</label>
+              <div>
+                <label for="vendorUPI">Vendor UPI Type</label>
                 <br>
-                <select id="vendorUPI" onchange="showUPIInput()">
-                  <option value="">Select...</option>
-                  <option value="gpay">GPay</option>
-                  <option value="phonepay">PhonePe</option>
-                  <option value="bharatpay">Bharat Pay</option>
-                  <option value="paytm">Paytm</option>
-                </select>
+                <span id="upiInputContainer">
+                  <select id="vendorUPI" onchange="showUPIInput()">
+                    <option value="" selected hidden>UPI Type</option>
+                    <option value="gpay">GPay</option>
+                    <option value="phonepay">PhonePe</option>
+                    <option value="bharatpay">Bharat Pay</option>
+                    <option value="paytm">Paytm</option>
+                  </select>
+                </span>
               </div>
               <br>
-              <div id="upiInputContainer">
-                <input type="text" id="upiInput" name="upiInput" placeholder="UPI Phone Number" style="
-                width: 29%;"
-             disabled>
-                <input type="text" name="GST" placeholder="Vendor GST" required>
-              </div>
-            </div>
 
-          </div>
+              <input type="text" id="upiInput" name="upiInput" placeholder="UPI Phone Number" disabled>
+              <input type="text" name="GST" placeholder="Vendor GST" required>
+              <input type="text" name="IFSC" placeholder="IFSC Code" required>
+              <input type="text" name="pannum" placeholder="Vendor Pan Card Number" required>
+
+            </div>
+            
+
         </div>
+    </div>
+    <div>
+      <div class="extra-info">
         <div>
-          <div style="display: flex;align-items: flex-end;">
-            <div style="width: 24.5%;">
-              <label for="dateOfExit">Vendor Date of Inclusion:</label><br>
-              <input type="date" name="joindate" placeholder="Vendor DOI" required>
-            </div>
-            <div>
+          <label for="dateOfExit">Vendor Date of Inclusion:</label><br>
+          <input type="date" class="date-selector" name="joindate" placeholder="Vendor DOI" required>
+        </div>
+        <div class="doe">
 
-              <label for="dateOfExit">Vendor Date of Exit:</label><br>
-              <input type="date" id="dateOfExit" name="dateOfExit" max="9999-12-31" required>
-            </div>
+          <label for="dateOfExit">Vendor Date of Exit:</label><br>
+          <div class="doe_action">
+            <input type="date" id="dateOfExit" class="date-selector doe_selector" name="dateOfExit" max="9999-12-31"
+              required>
             <button class="today-date" onclick="setExactDate()">Set Today's Date</button>
           </div>
-          <div class="extra-info">
-            <input type="text" name="roe" placeholder="Vendor Reason for Exit" required>
-            <input type="text" name="ref" placeholder="Vendor Reference" required>
-            <input type="text" name="remark" placeholder="Remark" required>
-          </div>
         </div>
-        <div class="sub-button">
+        <select name="roe" required>
+          <option value="" selected hidden>Vendor Reason for Exit</option>
+          <option value="busiinessClosed">Bussiness closed</option>
+          <option value="highPrize">Mgt. Desicion(High prices)</option>
+          <option value="casual">Mgt. Desicion(Casual Behaviour)</option>
+          <option value="fraud">Fraud & Miss Information</option>
+          <option value="nepotism">Nepotism</option>
+          <option value="rudeness">Rude Behaviour</option>
+          <option value="unproffesional">Unprofessional</option>
+        </select>
+        <select name="ref" required>
+          <option value="" selected hidden>Vendor Refference</option>
+          <option value="busiinessClosed">Online</option>
+          <option value="highPrize">Employee rerfrence</option>
+          <option value="casual">Existing vendors reference</option>
+          <option value="fraud">Advertisment</option>
+        </select>
 
-          <button type="submit">Add Vendor</button>
-        </div>
-      </form>
-      <div style="width: 400px; height: 400px;">
-        <canvas id="pieChart"></canvas>
+
       </div>
+
+      <span class="remark">
+        <label for="remark">Remarks</label>
+        <textarea rows="10" cols="50" name="remark" placeholder="Remark" class="remark"> </textarea>
+      </span>
+    </div>
+    <div class="sub-button">
+
+      <button type="submit">Add Vendor</button>
+    </div>
+    </form>
+    <div style="width: 40%; height: 40%;">
+      <canvas id="pieChart"></canvas>
+    </div>
 
     </div>
 
