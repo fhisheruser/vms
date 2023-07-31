@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Management System</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    *{
+        padding: 0;
+    }
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #e91d62;
+  padding: 1rem;
+  text-align: center;
+  color: #ddd;
+  font-size: 25px;
+}
+title{
+  font-size: 25px;
+}
+main {
+  padding: 4rem 12rem;
+}
+
+h2{
+  border-bottom: 2px solid #e91d62;
+  width: fit-content;
+}
+
+.form-container {
+  flex: 1;
+}
+
+
+.date-selector{
+  max-width: 98%;
+}
+
+.doe{
+  margin: 0rem 0.6rem;
+}
+
+.today-date{
+  background-color: #e91d62db;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.basic-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+
+.basic-details>* {
+  flex: 1 0 30%;
+}
+
+.account-details {
+  margin: 3rem 0rem;
+}
+
+.account-input {
+  display: flex;
+  gap: 21px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.account-input>* {
+  flex: 1 1 21%;
+}
+
+
+.upi {
+  display: flex;
+  margin: 1rem 0rem;
+  align-items: flex-end;
+}
+
+#vendorUPI{
+  margin-top: 0.4rem;
+  width: 107%;
+}
+
+
+select {
+  padding: 0;
+  height: 2.3rem;
+  margin-top: 0.6rem;
+}
+
+
+.extra-info {
+  display: flex;
+  gap: 21px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+
+.extra-info>* {
+  flex: 1 0 22.9%;
+}
+
+.doe_action{
+  display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    max-height: 3rem;
+}
+
+.doe_action>*{
+  flex: 1 0 auto;
+}
+
+
+.doe_action button{
+  margin: 0.6rem 0% 0rem 3%;
+}
+
+input {
+  /* width: 100%; */
+  margin-top: 0.6rem;
+  padding: 0.5rem;
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+.remark{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+
+.sub-button {
+   
+    padding: 1.9rem 1rem;
+width: 10%;
+align-items: center;
+align-self: center;
+margin: auto;
+  }
+
+ 
+  .sub-button button[type="submit"] {
+   align-self: center;
+    padding: 0.8rem 1.5rem;
+    background-color: #e91d62;
+    font-size: 20px;
+  color: #ddd;
+  }
+
+  
+.vendor-list {
+  flex: 1;
+  max-width: 600px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+
+
+
+  /* Additional styling to align the label with the input field */
+ 
+  .vendor-details-heading {
+    color: #1e88e5; /* Change to your desired color */
+    font-size: 50px;
+  }
+
+  /* Add styles to change the color of Account Details section */
+  .account-details-heading {
+    color: #1e88e5; 
+    font-size: 50px;/* Change to your desired color */
+  }
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+ body{
+  /* position: absolute; */
+  width: 100vw;
+ }
+  main{
+    padding: 1rem 1rem;
+    max-width: 100vw;
+    /* overflow: hidden; */
+  }
+  
+  .doe{
+    margin: 1rem 0rem;
+  }
+  .doe_action{
+      max-width: min-content;
+  }
+  .date-selector{
+    width: 92%;
+    margin-bottom: 1.4%;
+  }
+  .sub-button {
+      align-items: center; /* Center buttons horizontally on small screens */
+    }
+
+
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Vendor Management System</h1>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <h2 class="vendor-details-heading">Vendor Details:</h2>
+      <form id="vendorForm" method="post" action="index.php">
+        <div class="basic-details">
+          <input type="text" name="name" placeholder="Vendor Name" required>
+          <input type="text" name="shopName" placeholder="Vendor Shop Name">
+          <input type="tel" name="phone" placeholder="Vendor Phone Number" required>
+          <input type="tel" name="altphone" placeholder="Vendor Alternate Phone Number" required>
+          <input type="email" name="email" placeholder="Vendor Email ID" required>
+          <select name="type" required>
+            <option value="" selected hidden>Vendor Type</option>
+            <option value="Food">Food</option>
+            <option value="Flower">Flower</option>
+            <option value="Vegeatbles">Vegetables</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Painter">Painter</option>
+            <option value="TaxiDriver">Taxi Driver</option>
+            <option value="CameraPerson">Photography & Videography</option>
+            <option value="Medicine">Medicine Provider</option>
+          </select>
+          <!-- <textarea rows="10" cols="50" name="remark" placeholder="Remark" class="remark"> </textarea> -->
+          <input type="text" name="repName" placeholder="Vendor Representative Name" required>
+          <input type="tel" name="repPhone" placeholder="Representative Phone Number" required>
+          <input type="email" name="repEmail" placeholder="Representative Email ID" required>
+
+          <input type="text" name="address" placeholder="Vendor Address" required>
+          
+          <select name="branchLocation" required>
+            <option value="" selected hidden>Branch Location</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chandigarh">Mumbai</option>
+            <option value="Chandigarh">Delhi</option>
+            <option value="Chandigarh">Gujarat</option>
+            <option value="Chandigarh">Rajasthan</option>
+            <option value="Chandigarh">Kerala</option>
+            <option value="Chandigarh">Chennai</option>
+          </select>
+          <!-- <input type="file" name="vendor-image" accept="image/*"> -->
+        </div>
+
+        <div class="account-details">
+          <h2 class="account-details-heading">Account Details:</h2>
+          
+            <div class="account-input">
+              <input type="number" name="Account" placeholder="Vendor Bank Account Number" required>
+              <input type="text" name="bankname" placeholder="Vendor Bank Name" required>
+              
+              <input type="text" name="Accountname" placeholder="Vendor Account Name" required>
+              <input type="text" name="pannum" placeholder="Vendor Pan Card Number" required>
+
+              
+              <br>
+              <div>
+                <label for="vendorUPI">Vendor UPI Type</label>
+                <br>
+                <span id="upiInputContainer">
+                  <select id="vendorUPI" onchange="showUPIInput()">
+                    <option value="" selected hidden>UPI Type</option>
+                    <option value="gpay">GPay</option>
+                    <option value="phonepay">PhonePe</option>
+                    <option value="bharatpay">Bharat Pay</option>
+                    <option value="paytm">Paytm</option>
+                  </select>
+                </span>
+              </div>
+              <input type="text" id="upiInput" name="upiInput" placeholder="UPI Phone Number" disabled>
+              <input type="text" name="GST" placeholder="Vendor GST" required>
+              <input type="text" name="IFSC" placeholder="IFSC Code" required>
+             
+            </div>
+            
+
+        </div>
+    </div>
+    <div>
+      <div class="extra-info">
+        <div>
+          <label for="dateOfExit">Vendor Date of Inclusion:</label><br>
+          <input type="date" class="date-selector" name="joindate" placeholder="Vendor DOI" required>
+        </div>
+        <div class="doe">
+
+          <label for="dateOfExit">Vendor Date of Exit:</label><br>
+          <div class="doe_action">
+            <input type="date" id="dateOfExit" class="date-selector doe_selector" name="dateOfExit" max="9999-12-31"
+              required>
+            <button class="today-date" onclick="setExactDate()">Set Today's Date</button>
+          </div>
+        </div>
+        <select name="roe" required>
+          <option value="" selected hidden>Vendor Reason for Exit</option>
+          <option value="busiinessClosed">Business closed</option>
+          <option value="highPrize">Mgt. Decision(High prices)</option>
+          <option value="casual">Mgt. Decision(Casual Behavior)</option>
+          <option value="fraud">Fraud & Miss Information</option>
+          <option value="nepotism">Nepotism</option>
+          <option value="rudeness">Rude Behavior</option>
+          <option value="unproffesional">Unprofessional</option>
+        </select>
+        <select name="ref" required>
+          <option value="" selected hidden>Vendor Reference</option>
+          <option value="busiinessClosed">Online</option>
+          <option value="highPrize">Employee reference</option>
+          <option value="casual">Existing vendors reference</option>
+          <option value="fraud">Advertisement</option>
+        </select>
+
+
+      </div>
+
+      <span class="remark">
+        <label for="remark">Remarks</label>
+        <textarea rows="10" cols="50" name="remark" placeholder="Remark" class="remark"> </textarea>
+      </span>
+    </div>
+    <input type="file" id="upiInput" name="upiInput" placeholder="Documents" required>
+
+    <div class="sub-button">
+
+      <button type="submit">Submit</button>
+        </div>
+    </form>
+    <div style="width: 40%; height: 40%;">
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    </div>
+
+    <div class="vendor-list">
+      <h2>Vendor List</h2>
+      <ul id="vendorList">
+        <!-- Vendor details will be populated dynamically -->
+      </ul>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    
+vendorForm.addEventListener('submit', addVendor);
+
+function addVendor(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const vendor = {};
+  formData.forEach((value, key) => (vendor[key] = value));
+  displayVendor(vendor);
+  event.target.reset();
+}
+
+function displayVendor(vendor) {
+  const listItem = document.createElement('li');
+  listItem.innerHTML = `
+    <strong>${vendor.name}</strong><br>
+    <strong>Shop Name:</strong> ${vendor.shopName || 'N/A'}<br>
+    <strong>Address:</strong> ${vendor.address}<br>
+    <strong>Phone:</strong> ${vendor.phone}<br>
+    <strong>Email:</strong> ${vendor.email}<br>
+    <strong>Type:</strong> ${vendor.type}<br>
+  `;
+  vendorList.appendChild(listItem);
+}
+function showUPIInput() {
+      const vendorUPI = document.getElementById("vendorUPI");
+      const upiInputContainer = document.getElementById("upiInputContainer");
+      const upiInput = document.getElementById("upiInput");
+
+      const selectedOption = vendorUPI.value;
+      upiInput.value = ""; // Clear the input field on change
+
+      if (selectedOption) {
+        upiInputContainer.style.display = "block";
+        upiInput.disabled = false;
+        upiInput.placeholder = `Enter ${selectedOption} UPI Number`;
+      } else {
+        upiInputContainer.style.display = "none";
+        upiInput.disabled = true;
+      }
+    }
+
+    function setExactDate() {
+      const dateOfExitInput = document.getElementById("dateOfExit");
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString().slice(0, 10);
+      dateOfExitInput.value = formattedDate;
+    }
+
+
+    function browseFiles() {
+      window.open("file_submission.html", "_blank", "width=600,height=400");
+    }
+
+
+
+
+
+    document.getElementById("vendorForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const vendorData = {
+      name: formData.get("vendorName"),
+      type: formData.get("vendorType"),
+      dateOfExit: formData.get("dateOfExit")
+    };
+
+    // Call a function to update the pie chart with the vendorData
+    updatePieChart(vendorData);
+  });
+
+
+
+  const vendorForm = document.getElementById('vendorForm');
+  const vendorList = document.getElementById('vendorList');
+  const vendorDataArray = []; // Array to store vendor data
+
+  vendorForm.addEventListener('submit', addVendor);
+
+  function addVendor(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const vendor = {};
+    formData.forEach((value, key) => (vendor[key] = value));
+    vendorDataArray.push(vendor); // Add vendor data to the array
+    displayVendor(vendor);
+    event.target.reset();
+    updatePieChart(); // Update the pie chart on each vendor addition
+  }
+
+  function displayVendor(vendor) {
+    // ... Your existing code to display vendor details ...
+  }
+
+  function updatePieChart() {
+    // Collect the vendor type data and calculate the counts
+    const vendorTypes = vendorDataArray.map((vendor) => vendor.type);
+    const vendorTypeCounts = {};
+    vendorTypes.forEach((type) => {
+      vendorTypeCounts[type] = (vendorTypeCounts[type] || 0) + 1;
+    });
+
+    // Serialize the vendor type counts and redirect to piechart.html
+    const serializedData = encodeURIComponent(JSON.stringify(vendorTypeCounts));
+    window.location.href = `piechart.html?data=${serializedData}`;
+  }
+
+
+
+  function redirectToPieChart() {
+    window.location.href = "piechart.html";
+  }
+
+
+
+
+  </script>
+</body>
+
+</html>
